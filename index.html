@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Distill — AI Summary Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo-mark">Distill <span>&#10022;</span> AI</div>
+    <h1>Summarise <em>anything,</em><br>instantly.</h1>
+    <p class="tagline">Powered by BART &middot; Free &middot; No signup required</p>
+  </header>
+
+  <div class="card">
+
+    <!-- Input -->
+    <div class="card-section">
+      <label for="text-input">Paste your text</label>
+      <textarea id="text-input" placeholder="Paste an article, essay, research paper — anything with at least 30 words..."></textarea>
+      <div class="word-count"><span id="word-count">0</span> words</div>
+    </div>
+
+    <!-- Length selector -->
+    <div class="card-section">
+      <label>Summary length</label>
+      <div class="length-options">
+        <button class="length-btn" data-val="short">Short<br><small>~2-3 sentences</small></button>
+        <button class="length-btn active" data-val="medium">Medium<br><small>~4-6 sentences</small></button>
+        <button class="length-btn" data-val="long">Long<br><small>~7-10 sentences</small></button>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="card-section">
+      <button class="submit-btn" id="summarize-btn">Distill it &rarr;</button>
+    </div>
+
+    <!-- Loading -->
+    <div class="card-section loading" id="loading">
+      <div class="spinner"></div>
+      <p>Running the model... this may take ~20s on first load</p>
+    </div>
+
+    <!-- Error -->
+    <div class="card-section" id="error-wrapper" style="display:none">
+      <div class="error-box" id="error-box"></div>
+    </div>
+
+    <!-- Result -->
+    <div class="card-section result-section" id="result-section">
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-num" id="stat-original">-</span>
+          <div class="stat-label">Original words</div>
+        </div>
+        <div class="stat">
+          <span class="stat-num" id="stat-summary">-</span>
+          <div class="stat-label">Summary words</div>
+        </div>
+        <div class="stat">
+          <span class="stat-num accent" id="stat-reduction">-</span>
+          <div class="stat-label">Reduction</div>
+        </div>
+      </div>
+      <label>Your summary</label>
+      <div class="summary-box" id="summary-output"></div>
+      <button class="copy-btn" id="copy-btn">Copy summary</button>
+    </div>
+
+  </div>
+
+  <p class="note">
+    Uses <a href="https://huggingface.co/facebook/bart-large-cnn" target="_blank">facebook/bart-large-cnn</a> via Hugging Face free API.<br>
+    Get a free token at <a href="https://huggingface.co/settings/tokens" target="_blank">huggingface.co/settings/tokens</a>
+  </p>
+</div>
+
+<script src="/script.js"></script>
+</body>
+</html>
